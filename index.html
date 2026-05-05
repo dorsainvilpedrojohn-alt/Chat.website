@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Free Fire Tracker</title>
+  <style>
+    body {
+      background: #0a0a0a;
+      color: #fff;
+      font-family: Arial;
+      text-align: center;
+      padding-top: 100px;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      background: crimson;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    #stats {
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Free Fire Tracker</h1>
+
+  <button onclick="openFreeFire()">Open Free Fire</button>
+
+  <div id="stats">
+    <h2>Last Match</h2>
+    <p>Kills: <span id="kills">0</span></p>
+    <p>Rank: <span id="rank">-</span></p>
+  </div>
+
+  <script>
+    function openFreeFire() {
+      // Attempt to open app (Android deep link example)
+      window.location.href = "freefire://";
+
+      // Fallback after delay
+      setTimeout(() => {
+        window.location.href = "https://play.google.com/store/apps/details?id=com.dts.freefireth";
+      }, 2000);
+    }
+
+    // Example: load stored match data
+    const data = JSON.parse(localStorage.getItem("ff_stats")) || {
+      kills: 5,
+      rank: 2
+    };
+
+    document.getElementById("kills").innerText = data.kills;
+    document.getElementById("rank").innerText = data.rank;
+  </script>
+
+</body>
+</html>
